@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyWebApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,27 @@ namespace MyWebApplication.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Page1()
+        {
+            ViewBag.Message = "app test page";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult SimpleQueryView(QueryResponse simpleQueryView)
+        {
+            if(ModelState.IsValid)
+            {
+                return View(simpleQueryView);
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
