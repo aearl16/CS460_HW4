@@ -29,7 +29,7 @@ namespace MyWebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult Page1()
+        public ActionResult Page2()
         {
             ViewBag.Message = "app test page";
 
@@ -45,7 +45,7 @@ namespace MyWebApplication.Controllers
             }
             else
             {
-                return View();
+                return View("Error");
             }
         }
     }
