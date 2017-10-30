@@ -6,13 +6,24 @@ using System.Web.Mvc;
 
 namespace MyWebApplication.Controllers
 {
+    /// <summary>
+    /// This class is the main controller for all of the MVC pages in the program
+    /// </summary>
     public class HomeController : Controller
     {
+        /// <summary>
+        /// This is the Home page ActionResult
+        /// </summary>
+        /// <returns>Index</returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Returns the About page view
+        /// </summary>
+        /// <returns>About</returns>
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -20,6 +31,10 @@ namespace MyWebApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns the contact page
+        /// </summary>
+        /// <returns>Contact</returns>
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -27,6 +42,10 @@ namespace MyWebApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This generates the get page for Page2
+        /// </summary>
+        /// <returns>Page 2</returns>
         [HttpGet]
         public ActionResult Page2()
         {
@@ -35,12 +54,27 @@ namespace MyWebApplication.Controllers
         }
 
 
+        /// <summary>
+        /// Get page for the simple query
+        /// </summary>
+        /// <returns>SimpleQueryView</returns>
         [HttpGet]
         public ViewResult SimpleQueryView()
         {
+            string FirstName = Request.QueryString["FirstName"];
+            string LastName = Request.QueryString["LastName"];
+
+            ViewBag.FirstName = FirstName;
+            ViewBag.LastName = LastName;
+
             return View();
         }
 
+        /// <summary>
+        /// This method is the post for Page2
+        /// </summary>
+        /// <param name="fc"></param>
+        /// <returns>Page2 Post</returns>
         [HttpPost]
         public ViewResult Page2(FormCollection fc)
         {
@@ -49,12 +83,24 @@ namespace MyWebApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Get Page for the Loan Calculator
+        /// </summary>
+        /// <returns>LoanCalculator</returns>
         [HttpGet]
         public ViewResult LoanCalculator()
         {
             return View();
         }
 
+        /// <summary>
+        /// Post method for the Loan Calculator
+        /// </summary>
+        /// <param name="iRate"></param>
+        /// <param name="purchasePrice"></param>
+        /// <param name="downPayment"></param>
+        /// <param name="term"></param>
+        /// <returns>Loan Calculator</returns>
         [HttpPost]
         public ViewResult LoanCalculator(decimal iRate, decimal purchasePrice, decimal downPayment, int term)
         {
