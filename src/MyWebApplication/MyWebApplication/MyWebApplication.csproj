@@ -186,6 +186,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Page2.cshtml" />
     <Content Include="Views\Home\SimpleQueryView.cshtml" />
+    <Content Include="Views\Shared\CalcError.cshtml" />
+    <Content Include="Views\Home\LoanCalculator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

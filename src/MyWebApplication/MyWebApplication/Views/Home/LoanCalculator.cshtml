@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "LoanCalculator";
+}
+
+<h2>Loan Calculator</h2>
+
+<form action="~/Home/LoanCalculator" method="post">
+    Down Payment:<br />
+    <input type="text" name="downPayment" value="" />
+    <br />
+    Purchase Price:<br />
+    <input type="text" name="purchasePrice" value="" />
+    <br />
+    Interest Rate:<br />
+    <input type="text" name="iRate" value="" />
+    <br />
+    Loan Term(In Months):<br />
+    <input type="text" name="term" value="" />
+    <br />
+    <br />
+    <input type="submit">
+</form>
+
+@if(ViewBag.MonthlyPayment != null)
+{
+    <p>Your monthly payment is: @ViewBag.MonthlyPayment</p>
+}

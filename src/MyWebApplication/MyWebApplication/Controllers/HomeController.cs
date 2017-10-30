@@ -56,8 +56,29 @@ namespace MyWebApplication.Controllers
         }
 
         [HttpPost]
-        public ViewResult LoanCalculator(decimal? iRate, int? loanAmt, int? downPayment, int? term)
+        public ViewResult LoanCalculator(decimal iRate, decimal purchasePrice, decimal downPayment, int term)
         {
+            const int MonthsInYear = 12;
+            decimal payment = 0;
+            decimal loanAmt = purchasePrice - downPayment;
+            int numYrs = term / MonthsInYear;
+
+            if(numYrs > 0)
+            {
+                if(iRate != 0)
+                {
+                    decimal rate = (iRate / MonthsInYear) / 100;
+                    decimal factor = (rate + (rate / (decimal)(Math.Pow((double)rate + 1, term) - 1)));
+                    payment = (loanAmt * factor);
+                }
+                else
+                {
+                    payment = loanAmt / term;
+                }
+            }
+            payment = Math.Round(payment, 2);
+            ViewBag.MonthlyPayment = payment;
+
             return View();
         }
     }
