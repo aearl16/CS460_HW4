@@ -1,5 +1,4 @@
-﻿using MyWebApplication.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,21 +31,34 @@ namespace MyWebApplication.Controllers
         public ActionResult Page2()
         {
             ViewBag.Message = "app test page";
+            return View();
+        }
 
+
+        [HttpGet]
+        public ViewResult SimpleQueryView()
+        {
             return View();
         }
 
         [HttpPost]
-        public ViewResult SimpleQueryView(QueryResponse simpleQueryView)
+        public ViewResult Page2(FormCollection fc)
         {
-            if(ModelState.IsValid)
-            {
-                return View(simpleQueryView);
-            }
-            else
-            {
-                return View("Error");
-            }
+            ViewBag.FirstName = fc["FirstName"];
+            ViewBag.LastName = fc["LastName"];
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult LoanCalculator()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult LoanCalculator(decimal? iRate, int? loanAmt, int? downPayment, int? term)
+        {
+            return View();
         }
     }
 }

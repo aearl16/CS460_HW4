@@ -1,18 +1,34 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Test App";
 }
 
 <h2>Test Web Form</h2>
 
-<form action="~/Home/simpleQueryView" method="post">
+<form action="~/Home/Page2" method="post">
     First Name:<br />
-    <input type="text">
+    <input type="text" name="FirstName" value=""/>
     <br />
     Last Name:<br />
-    <input type="text">
+    <input type="text" name="LastName" value="" />
     <br />
     <br />
     <input type="submit">
 </form>
+
+@if(ViewBag.FirstName == null & ViewBag.LastName == null)
+{
+    @: You forgot to enter your name!
+}
+else if(ViewBag.FirstName == null)
+{
+    @: You forgot your first name!
+}
+else if(ViewBag.LastName == null)
+{
+    @: You forgot your last name!
+}
+else
+{
+    <p> Hi @ViewBag.FirstName @ViewBag.LastName! </p>
+}
 
