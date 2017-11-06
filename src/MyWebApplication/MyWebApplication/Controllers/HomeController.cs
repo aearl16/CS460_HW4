@@ -102,24 +102,25 @@ namespace MyWebApplication.Controllers
         /// <param name="term"></param>
         /// <returns>Loan Calculator</returns>
         [HttpPost]
-        public ViewResult LoanCalculator(decimal iRate, decimal purchasePrice, decimal downPayment, int term)
+        public ViewResult LoanCalculator(decimal? iRate, decimal? purchasePrice, decimal? downPayment, int? term)
         {
             const int MonthsInYear = 12;
             decimal payment = 0;
-            decimal loanAmt = purchasePrice - downPayment;
-            int numYrs = term / MonthsInYear;
+            decimal loanAmt = purchasePrice.GetValueOrDefault() - downPayment.GetValueOrDefault();
+            int numYrs = term.GetValueOrDefault() / MonthsInYear;
 
-            if(numYrs > 0)
+            if (numYrs > 0)
             {
-                if(iRate != 0)
+                if (iRate != 0)
                 {
-                    decimal rate = (iRate / MonthsInYear) / 100;
-                    decimal factor = (rate + (rate / (decimal)(Math.Pow((double)rate + 1, term) - 1)));
+                    decimal rate = (iRate.GetValueOrDefault() / MonthsInYear) / 100;
+                    decimal factor = (rate + (rate / (decimal)(Math.Pow((double)rate + 1, term.GetValueOrDefault()) - 1)));
                     payment = (loanAmt * factor);
                 }
                 else
                 {
-                    payment = loanAmt / term;
+                    // if the value is default it could be zero,
+                    payment = loanAmt / term ?? 1;
                 }
             }
             payment = Math.Round(payment, 2);
